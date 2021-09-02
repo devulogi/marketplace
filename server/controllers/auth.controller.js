@@ -4,12 +4,30 @@ export function getRootAPI(req, res) {
   res.status(200).json({ name: 'obet' });
 }
 
-export function registerUser(req, res) {
-  User.create({ ...req.body })
-    .then(user => {
-      res.status(201).json({ msg: 'success: user created' });
-    })
-    .catch(error => {
-      return res.status(500);
-    });
+export function registerUser(req, res, next) {
+  if (!req.body.name) {
+    return res.status(400).json({ error: 'name is required.' });
+  }
+
+  if (!req.body.password || req.body.password.length < 6) {
+    return res
+      .status(400)
+      .json({ error: 'password is required and should be 6 characters long.' });
+  }
+
+  User.findOne({ email: req.body.email }, function (err, user) {
+    if (err) return next(err);
+
+    if (!user) {
+      User.create(req.body, function (err, newUser) {
+        if (err) return next(err);
+
+        return res.status(201).json({ msg: 'user created' });
+      });
+    }
+
+    return res
+      .status(400)
+      .json({ error: `${req.body.email} was already taken.` });
+  });
 }
