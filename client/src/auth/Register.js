@@ -1,17 +1,19 @@
 import { useState } from 'react';
+import marketplace from '../services/marketplaceAPI';
 
 function RegistrationForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleFormSubmit = e => {
+  const handleFormSubmit = async e => {
     e.preventDefault();
-    alert(`
-      Name: ${name}
-      Email: ${email}
-      Password: ${password}
-    `);
+    const response = await marketplace.post('/api/register', {
+      name,
+      email,
+      password,
+    });
+    console.log(response);
   };
 
   return (

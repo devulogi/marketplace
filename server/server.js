@@ -15,8 +15,9 @@ const PORT = process.env.PORT || process.env.DEV_APP_PORT;
 const app = express();
 
 app.use(helmet());
-app.use(morgan('dev'));
 app.use(cors());
+app.use(morgan('dev'));
+app.use(express.json());
 
 app.use('/api', router);
 
