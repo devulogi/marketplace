@@ -15,6 +15,10 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(cors());
+app.use(function (req, res, next) {
+  res.removeHeader('X-Powered-By');
+  next();
+});
 
 app.use('/api', router);
 
