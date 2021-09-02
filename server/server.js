@@ -8,6 +8,8 @@ config();
 
 import './services/mongoose.js';
 
+import { notFoundHandler, errorHandler } from './helper.js';
+
 import router from './routes/auth.route.js';
 
 const PORT = process.env.PORT || process.env.DEV_APP_PORT;
@@ -20,6 +22,10 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use('/api', router);
+
+app.use(notFoundHandler);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
