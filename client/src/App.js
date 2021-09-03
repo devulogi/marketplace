@@ -5,14 +5,7 @@ import Home from './booking/Home';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import TopNav from './components/TopNav';
-
-function NotFound() {
-  return (
-    <div className='container-fluid p-5 text-center'>
-      <h1>404: Page not found!</h1>
-    </div>
-  );
-}
+import NotFound from './components/NotFound';
 
 export default function App() {
   return (
