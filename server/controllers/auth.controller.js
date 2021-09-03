@@ -24,7 +24,7 @@ export function registerUser(req, res, next) {
       User.create(req.body, function (err, newUser) {
         if (err) return next(err);
 
-        return res.status(201).json({ hint: 'Congratulations!' });
+        return res.status(201).json({ hint: `Welcome, ${newUser.name}!` });
       });
     } else {
       return res.status(400).json({
