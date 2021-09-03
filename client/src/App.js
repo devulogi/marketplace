@@ -1,4 +1,4 @@
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 import Home from './booking/Home';
@@ -9,15 +9,19 @@ import NotFound from './components/NotFound';
 
 export default function App() {
   return (
-    <Router>
-      <TopNav />
-      <Toaster position='top-right' reverseOrder={false} />
+    <BrowserRouter basename='/'>
+      <div className='application'>
+        <TopNav />
+      </div>
+
+      <Toaster position='top-center' />
+
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/signin' component={Login} />
         <Route exact path='/register' component={Register} />
         <Route path='*' component={NotFound} />
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
