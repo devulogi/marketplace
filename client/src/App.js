@@ -1,4 +1,5 @@
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 import Home from './booking/Home';
 import Login from './auth/Login';
@@ -9,6 +10,7 @@ export default function App() {
   return (
     <Router>
       <TopNav />
+      <Toaster position='top-right' reverseOrder={false} />
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
