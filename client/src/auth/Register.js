@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Toaster, toast } from 'react-hot-toast';
+
 import marketplace from '../services/marketplaceAPI';
 
 function RegistrationForm() {
@@ -8,12 +10,43 @@ function RegistrationForm() {
 
   const handleFormSubmit = async e => {
     e.preventDefault();
-    const response = await marketplace.post('/api/register', {
-      name,
-      email,
-      password,
-    });
-    console.log(response);
+
+    if (name === '') {
+      toast.error('Name is required.');
+      return;
+    }
+    if (email === '') {
+      toast.error('Email is required.');
+      return;
+    }
+    if (password === '') {
+      toast.error('Password is required.');
+      return;
+    }
+
+    toast.promise(
+      marketplace.post('/api/register', {
+        name,
+        email,
+        password,
+      }),
+      {
+        loading: 'Loading...',
+        success: data => {
+          setName('');
+          setEmail('');
+          setPassword('');
+          return `User Created.`;
+        },
+        error: err => `Error: ${err.response.data.hint}`,
+      },
+      {
+        style: {
+          minWidth: '250px',
+          duration: 2600,
+        },
+      }
+    );
   };
 
   return (
@@ -66,6 +99,8 @@ export default function Register() {
       <div className='container-fluid bg-secondary p-5 text-center'>
         <h1>Register</h1>
       </div>
+
+      <Toaster position='top-right' reverseOrder={false} />
 
       <div className='container'>
         <div className='row'>
