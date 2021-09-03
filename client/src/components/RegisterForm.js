@@ -40,7 +40,7 @@ export default function RegistrationForm() {
       setEmail('');
       setPassword('');
 
-      history.push('/login');
+      history.push('/signin');
     } catch (error) {
       toast.error(error.response.data.hint);
     }

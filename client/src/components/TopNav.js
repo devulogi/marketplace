@@ -6,8 +6,8 @@ export default function TopNav() {
       <Link to='/' className='nav-link'>
         Home
       </Link>
-      <Link to='/login' className='nav-link'>
-        Log in
+      <Link to='/signin' className='nav-link'>
+        Sign in
       </Link>
       <Link to='/register' className='nav-link'>
         Register

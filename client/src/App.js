@@ -6,6 +6,14 @@ import Login from './auth/Login';
 import Register from './auth/Register';
 import TopNav from './components/TopNav';
 
+function NotFound() {
+  return (
+    <div className='container-fluid p-5 text-center'>
+      <h1>404: Page not found!</h1>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <Router>
@@ -13,8 +21,9 @@ export default function App() {
       <Toaster position='top-right' reverseOrder={false} />
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route exact path='/login' component={Login} />
+        <Route exact path='/signin' component={Login} />
         <Route exact path='/register' component={Register} />
+        <Route path='*' component={NotFound} />
       </Switch>
     </Router>
   );

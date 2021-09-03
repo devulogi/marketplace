@@ -3,8 +3,8 @@ import RegistrationForm from '../components/RegisterForm';
 export default function Register() {
   return (
     <>
-      <div className='container-fluid bg-secondary p-5 text-center'>
-        <h1>Register</h1>
+      <div className='container-fluid p-5 text-center'>
+        <h1>Create Account</h1>
       </div>
 
       <div className='container'>
