@@ -6,13 +6,13 @@ export function getRootAPI(req, res) {
 
 export function registerUser(req, res, next) {
   if (!req.body.name) {
-    return res.status(400).json({ error: 'name is required.' });
+    return res.status(400).send({ error_msg: 'name is required.' });
   }
 
   if (!req.body.password || req.body.password.length < 6) {
-    return res
-      .status(400)
-      .json({ error: 'password is required and should be 6 characters long.' });
+    return res.status(400).send({
+      error_msg: 'password is required and should be 6 characters long.',
+    });
   }
 
   User.findOne({ email: req.body.email }, function (err, user) {
@@ -22,12 +22,12 @@ export function registerUser(req, res, next) {
       User.create(req.body, function (err, newUser) {
         if (err) return next(err);
 
-        return res.status(201).json({ ok: true });
+        return res.status(201).send({ ok: true });
       });
+    } else {
+      return res
+        .status(400)
+        .send({ error_msg: `${req.body.email} was already taken.` });
     }
-
-    return res
-      .status(400)
-      .json({ error: `${req.body.email} was already taken.` });
   });
 }
