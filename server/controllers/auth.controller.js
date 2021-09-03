@@ -22,7 +22,7 @@ export function registerUser(req, res, next) {
       User.create(req.body, function (err, newUser) {
         if (err) return next(err);
 
-        return res.status(201).json({ msg: 'user created' });
+        return res.status(201).json({ ok: true });
       });
     }
 
