@@ -28,7 +28,7 @@ export default function RegistrationForm() {
     }
 
     try {
-      const response = await marketplace.post('/api/register', {
+      const response = await marketplace.post('/register', {
         name,
         email,
         password,
