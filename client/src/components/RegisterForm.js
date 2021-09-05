@@ -49,7 +49,6 @@ export default function RegistrationForm() {
   return (
     <form className='mt-3' onSubmit={handleFormSubmit}>
       <div className='form-group mb-3'>
-        <label className='form-label'>Your Name</label>
         <input
           type='text'
           value={name}
@@ -61,7 +60,6 @@ export default function RegistrationForm() {
         />
       </div>
       <div className='form-group mb-3'>
-        <label className='form-label'>Your Email</label>
         <input
           type='email'
           value={email}
@@ -72,7 +70,6 @@ export default function RegistrationForm() {
         />
       </div>
       <div className='form-group mb-3'>
-        <label className='form-label'>Your Password</label>
         <input
           type='password'
           value={password}
