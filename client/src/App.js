@@ -9,7 +9,7 @@ import NotFound from './components/NotFound';
 
 export default function App() {
   return (
-    <BrowserRouter basename='/'>
+    <BrowserRouter basename='/home'>
       <div className='application'>
         <TopNav />
       </div>
@@ -17,7 +17,7 @@ export default function App() {
       <Toaster position='top-center' />
 
       <Switch>
-        <Route exact path='/' component={Home} />
+        <Route exact path='/home' component={Home} />
         <Route exact path='/signin' component={Login} />
         <Route exact path='/register' component={Register} />
         <Route path='*' component={NotFound} />
