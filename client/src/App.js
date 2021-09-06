@@ -1,4 +1,4 @@
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Redirect, Switch, BrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 import Home from './booking/Home';
@@ -9,7 +9,7 @@ import NotFound from './components/NotFound';
 
 export default function App() {
   return (
-    <BrowserRouter basename='/home'>
+    <BrowserRouter basename='/'>
       <div className='application'>
         <TopNav />
       </div>
@@ -17,6 +17,9 @@ export default function App() {
       <Toaster position='top-center' />
 
       <Switch>
+        <Route exact path='/'>
+          <Redirect to='/home' />
+        </Route>
         <Route exact path='/home' component={Home} />
         <Route exact path='/signin' component={Login} />
         <Route exact path='/register' component={Register} />
